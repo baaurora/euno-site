@@ -219,8 +219,8 @@
   .hero-right{display:flex;justify-content:center;align-items:center}
   .logo-stage{position:relative;flex:none;width:min(530px,49vw);aspect-ratio:1;display:grid;place-items:center;transition:opacity .3s ease}
   /* centered hero: orb core, logo front-and-center, 3D satellites orbiting */
-  .hero-center{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;padding:18px 0 40px;min-height:calc(100svh - 70px)}
-  .hero-system{position:relative;width:min(360px,62vw);aspect-ratio:1;display:grid;place-items:center;transition:opacity .3s ease}
+  .hero-center{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:4px;padding:12px 0 28px;min-height:calc(100svh - 66px)}
+  .hero-system{position:relative;width:min(300px,54vw);aspect-ratio:1;display:grid;place-items:center;transition:opacity .3s ease}
   .hero-system .hero-orb{position:absolute;left:50%;top:50%;width:82%;height:82%;transform:translate(-50%,-50%);display:block;z-index:1}
   .hero-system .hero-logo{position:relative;z-index:3;width:33%;height:33%;background-size:contain;background-repeat:no-repeat;background-position:center;filter:drop-shadow(0 10px 34px rgba(8,14,30,.6))}
   .orbit-field{position:absolute;inset:0;z-index:2;pointer-events:none;transform-style:preserve-3d}
@@ -557,7 +557,7 @@
       <euno-orb palette="brand" mood="0.72" class="hero-orb" id="heroOrb"></euno-orb>
       <div class="hero-logo" role="img" aria-label="euno"></div>
     </div>
-    <h1 style="font-family:var(--sf);font-weight:700;letter-spacing:-.03em;margin-top:12px">euno.</h1>
+    <h1 style="font-family:var(--sf);font-weight:700;letter-spacing:-.03em;margin-top:8px;font-size:clamp(30px,4vw,44px)">euno.</h1>
     <p class="hero-tag" style="max-width:30ch">You can't change the way you act without changing the way you think.</p>
     <div class="hero-cta" style="justify-content:center">
       <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSclFGUv7lPkuKuK6VPBueMDGZtHLpOMeMT70PJl2-JoY7Av0w/viewform" target="_blank" rel="noopener noreferrer">Join the beta + stay updated</a>
