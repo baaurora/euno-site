@@ -41,9 +41,11 @@
   }
 
   *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;background:var(--bg);transition:background-color .3s ease}
   @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.55;transition:background .3s ease,color .3s ease}
+  body{margin:0;background:transparent;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.55;transition:color .3s ease}
+  /* scroll cinema: night -> first-light sky, driven by scroll progress */
+  #sky{position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(150% 108% at 50% calc(100% + 4vh), hsl(var(--sky-h,224) 88% 60% / var(--sky-a,0)) 0%, transparent 56%),radial-gradient(96% 64% at 50% 116%, hsl(var(--sky-h,224) 84% 56% / var(--sky-glow,0)) 0%, transparent 60%)}
   .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
   .caret{display:inline-block;width:2px;height:1.05em;background:var(--accent);margin-left:4px;vertical-align:-1px;animation:blink 1s step-end infinite}
   @keyframes blink{50%{opacity:0}}
@@ -474,6 +476,7 @@
 </style>
 </head>
 <body class="loading gated">
+<div id="sky" aria-hidden="true"></div>
 
 <!-- ORB GATE -->
 <div id="gate" role="button" tabindex="0" aria-label="Open euno">
@@ -1202,6 +1205,35 @@ void main(){
   if(!customElements.get('euno-orb')) customElements.define('euno-orb', EunoOrb);
 })();
 
+</script>
+<script>
+  /* scroll cinema scheduler: one passive listener -> one rAF -> drive the sky arc */
+  (function(){
+    var root=document.documentElement;
+    var reduce=window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function clamp(x){return x<0?0:x>1?1:x;}
+    function lerp(a,b,t){return a+(b-a)*t;}
+    function smooth(t){return t*t*(3-2*t);}
+    function apply(P){
+      var lift=smooth(clamp((P-0.12)/0.72));            // dark until ~12%, full by ~84%
+      var a=lerp(0.0,0.20,lift);                        // broad horizon wash
+      var glow=lerp(0.0,0.46,Math.pow(lift,1.35));      // bright core rises later (the "click")
+      var hue=lerp(224,202,lift);                       // deep-night blue -> dawn azure
+      var key=(a*100|0)+'|'+(glow*100|0)+'|'+(hue*10|0);
+      if(key===apply._k) return; apply._k=key;
+      root.style.setProperty('--sky-a',a.toFixed(3));
+      root.style.setProperty('--sky-glow',glow.toFixed(3));
+      root.style.setProperty('--sky-h',hue.toFixed(1));
+      root.style.setProperty('--p',P.toFixed(4));
+    }
+    function progress(){ var m=(document.documentElement.scrollHeight-window.innerHeight)||1; return clamp(window.scrollY/m); }
+    if(reduce){ apply(0.45); return; }                  // resting mid-lift, no loop
+    var ticking=false;
+    function onScroll(){ if(ticking) return; ticking=true; requestAnimationFrame(function(){ apply(progress()); ticking=false; }); }
+    window.addEventListener('scroll',onScroll,{passive:true});
+    window.addEventListener('resize',onScroll);
+    apply(progress());
+  })();
 </script>
 </body>
 </html>
