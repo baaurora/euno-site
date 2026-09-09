@@ -219,21 +219,21 @@
   .hero-right{display:flex;justify-content:center;align-items:center}
   .logo-stage{position:relative;flex:none;width:min(530px,49vw);aspect-ratio:1;display:grid;place-items:center;transition:opacity .3s ease}
   /* centered hero: orb core, logo front-and-center, 3D satellites orbiting */
-  .hero-center{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:2px;padding:64px 0 88px;min-height:min(92vh,880px)}
-  .hero-system{position:relative;width:min(480px,88vw);aspect-ratio:1;display:grid;place-items:center;transition:opacity .3s ease}
+  .hero-center{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;padding:18px 0 40px;min-height:calc(100svh - 70px)}
+  .hero-system{position:relative;width:min(360px,62vw);aspect-ratio:1;display:grid;place-items:center;transition:opacity .3s ease}
   .hero-system .hero-orb{position:absolute;left:50%;top:50%;width:82%;height:82%;transform:translate(-50%,-50%);display:block;z-index:1}
   .hero-system .hero-logo{position:relative;z-index:3;width:33%;height:33%;background-size:contain;background-repeat:no-repeat;background-position:center;filter:drop-shadow(0 10px 34px rgba(8,14,30,.6))}
   .orbit-field{position:absolute;inset:0;z-index:2;pointer-events:none;transform-style:preserve-3d}
   .orbit{position:absolute;inset:0;transform-style:preserve-3d}
   .orbit .ring{position:absolute;inset:0;transform-style:preserve-3d;animation:orbSpin var(--d,16s) linear infinite}
-  .orbit .sat{position:absolute;left:50%;top:0;width:15px;height:15px;border-radius:50%;background:radial-gradient(circle at 34% 30%, #eaf4ff, var(--accent) 60%, transparent 73%);box-shadow:0 0 16px 2px color-mix(in srgb,var(--accent) 55%,transparent);transform:translate(-50%,-50%);animation:satDepth var(--d,16s) linear infinite}
+  .orbit .sat{position:absolute;left:50%;top:0;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 34% 30%, #f2f8ff, var(--accent) 58%, transparent 74%);box-shadow:0 0 20px 3px color-mix(in srgb,var(--accent) 62%,transparent);transform:translate(-50%,-50%);animation:satDepth var(--d,16s) linear infinite}
   .ob1{transform:rotateX(73deg) rotateY(0deg);--d:15s;inset:3%}
   .ob2{transform:rotateX(61deg) rotateY(58deg);--d:23s;inset:-7%}
   .ob3{transform:rotateX(80deg) rotateY(-42deg);--d:19s;inset:12%}
   .ob2 .ring,.ob2 .sat{animation-delay:-8s}
   .ob3 .ring,.ob3 .sat{animation-delay:-13s}
-  .ob2 .sat{width:11px;height:11px}
-  .ob3 .sat{width:9px;height:9px}
+  .ob2 .sat{width:14px;height:14px}
+  .ob3 .sat{width:12px;height:12px}
   @keyframes orbSpin{to{transform:rotateZ(360deg)}}
   @keyframes satDepth{0%{transform:translate(-50%,-50%) scale(.48);opacity:.38;filter:blur(.6px)}50%{transform:translate(-50%,-50%) scale(1.06);opacity:1;filter:blur(0)}100%{transform:translate(-50%,-50%) scale(.48);opacity:.38;filter:blur(.6px)}}
   @media (prefers-reduced-motion:reduce){ .orbit .ring,.orbit .sat{animation:none} }
@@ -557,7 +557,7 @@
       <euno-orb palette="brand" mood="0.72" class="hero-orb" id="heroOrb"></euno-orb>
       <div class="hero-logo" role="img" aria-label="euno"></div>
     </div>
-    <h1 style="font-family:var(--sf);font-weight:700;letter-spacing:-.03em;margin-top:24px">euno.</h1>
+    <h1 style="font-family:var(--sf);font-weight:700;letter-spacing:-.03em;margin-top:12px">euno.</h1>
     <p class="hero-tag" style="max-width:30ch">You can't change the way you act without changing the way you think.</p>
     <div class="hero-cta" style="justify-content:center">
       <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSclFGUv7lPkuKuK6VPBueMDGZtHLpOMeMT70PJl2-JoY7Av0w/viewform" target="_blank" rel="noopener noreferrer">Join the beta + stay updated</a>
