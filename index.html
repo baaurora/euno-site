@@ -213,7 +213,7 @@
   .hero{border-top:none}
   .hero-inner{display:grid;grid-template-columns:1fr 1.15fr;gap:30px;align-items:center;padding:80px 0 90px;min-height:min(82vh,760px)}
   .hero-left h1{font-size:clamp(38px,6vw,76px);line-height:1.02;margin:18px 0 0}
-  .hero-tag{font-size:clamp(19px,2.2vw,24px);color:var(--muted);margin:22px 0 0;max-width:34ch;font-weight:400;line-height:1.42}
+  .hero-tag{font-size:clamp(21px,2.4vw,28px);color:var(--muted);margin:22px 0 0;max-width:32ch;font-weight:400;line-height:1.4}
   .hero-cta{margin-top:34px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
   .hero .btn-primary{padding:13px 22px;font-size:14px}
   .hero-right{display:flex;justify-content:center;align-items:center}
@@ -547,14 +547,18 @@
 
 <!-- HERO -->
 <section id="top" class="hero">
-  <div class="wrap hero-center">
-    <div class="hero-system" id="logoStage">
-      <div class="hero-logo" role="img" aria-label="euno"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-left">
+      <h1 style="font-family:var(--sf);font-weight:700;letter-spacing:-.03em">euno.</h1>
+      <p class="hero-tag">You can't change the way you act without changing the way you think.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSclFGUv7lPkuKuK6VPBueMDGZtHLpOMeMT70PJl2-JoY7Av0w/viewform" target="_blank" rel="noopener noreferrer">Join the beta + stay updated</a>
+      </div>
     </div>
-    <h1 style="font-family:var(--sf);font-weight:700;letter-spacing:-.03em;margin-top:8px;font-size:clamp(30px,4vw,44px)">euno.</h1>
-    <p class="hero-tag" style="max-width:30ch">You can't change the way you act without changing the way you think.</p>
-    <div class="hero-cta" style="justify-content:center">
-      <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSclFGUv7lPkuKuK6VPBueMDGZtHLpOMeMT70PJl2-JoY7Av0w/viewform" target="_blank" rel="noopener noreferrer">Join the beta + stay updated</a>
+    <div class="hero-right">
+      <div class="logo-stage" id="logoStage">
+        <div class="hero-logo" role="img" aria-label="euno"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -563,7 +567,7 @@
 <section id="epiphanies" class="pad" style="padding-top:0;margin-top:-48px;position:relative">
   <div class="epi-aura" aria-hidden="true"><span class="ea a1"></span><span class="ea a2"></span><span class="ea a3"></span></div>
   <div class="wrap">
-    <h2 class="lead">An epiphany is a moment when how you think about yourself changes.</h2>
+    <h2 class="lead">An epiphany is when how you think about yourself changes, and how you act changes with it.</h2>
     <p class="pitch">euno helps you get there faster</p>
     <div class="feat-grid">
       <div class="feat">
@@ -752,7 +756,7 @@
     <div class="absorb-stage">
       <div class="absorb-pin">
         <div class="absorb-head">
-          <h2>The more of your life euno sees, the better it shows you how you think.</h2>
+          <h2>The more of your life euno sees, the better it shows you how you think, and what to do differently.</h2>
           <p class="absorb-sub">Small insights add up over time. Noticing how you think builds self-awareness, and self-awareness is what shifts your perspective.</p>
         </div>
         <div class="absorb-scene" id="absorbScene">
