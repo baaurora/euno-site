@@ -953,16 +953,30 @@
     btn.addEventListener('click', function(){ set(cur()==='dark'?'light':'dark'); });
   })();
 
-  /* orb gate: the site opens when the user taps the orb */
+  /* orb gate: the site opens at the top of the page when the user taps the orb */
   (function(){
+    /* never let the browser restore a previous scroll position behind the gate */
+    if('scrollRestoration' in history){ try{ history.scrollRestoration='manual'; }catch(e){} }
+    function toTop(){
+      var root=document.documentElement, prev=root.style.scrollBehavior;
+      root.style.scrollBehavior='auto';          /* defeat scroll-behavior:smooth */
+      window.scrollTo(0,0);
+      root.style.scrollBehavior=prev||'';
+    }
+    toTop();
+    window.addEventListener('load', toTop);
     var gate=document.getElementById('gate');
     if(!gate){ document.body.classList.remove('loading','gated'); return; }
+    /* hold the page at the top for as long as the gate is up */
+    window.addEventListener('scroll', function(){ if(document.body.classList.contains('gated')) toTop(); }, {passive:true});
     var opened=false;
     function open(){
       if(opened) return; opened=true;
+      toTop();                                   /* open on the hero, every time */
       gate.classList.add('leaving');
       document.body.classList.remove('gated','loading');
-      setTimeout(function(){ gate.style.display='none'; }, 950);
+      requestAnimationFrame(toTop);
+      setTimeout(function(){ gate.style.display='none'; toTop(); }, 950);
     }
     gate.addEventListener('click', open);
     gate.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); } });
